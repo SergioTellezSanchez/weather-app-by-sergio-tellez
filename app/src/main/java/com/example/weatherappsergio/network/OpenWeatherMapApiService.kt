@@ -1,5 +1,6 @@
 package com.example.weatherappsergio.network
 
+import com.example.weatherappsergio.constants.APP_ID
 import com.example.weatherappsergio.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val APP_ID = "65d00499677e59496ca2f318eb68c049"
+//Example of the API that is being use
 //https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api key}
 
 interface OpenWeatherMapApiService {

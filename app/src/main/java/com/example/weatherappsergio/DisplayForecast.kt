@@ -19,6 +19,9 @@ class DisplayForecast : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.view = this
+        val city = intent.getStringExtra(SELECTED_CITY).toString()
+        viewModel.city = city
+        viewModel.getForecastForSelectedCity()
     }
 
     fun displayForecastDetails(city: String?) {

@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 
 class DisplayForecastViewModel: ViewModel() {
 
-    //Todo get the input citi from MainActivity
-    val city = "Atlanta"
+    var city = "Atlanta" //default
 
     private val _temperatureDegrees = MutableLiveData<String>()
     private val _temperatureDegreesMax = MutableLiveData<String>()
@@ -22,11 +21,7 @@ class DisplayForecastViewModel: ViewModel() {
     val temperatureDegreesMax: LiveData<String> = _temperatureDegreesMax
     val temperatureDegreesMin: LiveData<String> = _temperatureDegreesMin
 
-    init {
-        getForecastForSelectedCity()
-    }
-
-    private fun getForecastForSelectedCity() {
+    fun getForecastForSelectedCity() {
         viewModelScope.launch {
             val responseMain = OpenWeatherMapApiService().getCurrentWeatherAsync(
                 city).await().list[0].main

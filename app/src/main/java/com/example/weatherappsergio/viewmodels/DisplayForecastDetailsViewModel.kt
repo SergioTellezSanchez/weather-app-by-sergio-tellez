@@ -1,20 +1,16 @@
 package com.example.weatherappsergio.viewmodels
 
-import android.provider.Settings.Global.getString
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherappsergio.R
 import com.example.weatherappsergio.constants.FAHRENHEIT_DEGREES_SYMBOL
 import com.example.weatherappsergio.network.OpenWeatherMapApiService
 import kotlinx.coroutines.launch
 
 class DisplayForecastDetailsViewModel: ViewModel() {
 
-    //Todo get the input citi from MainActivity
-    val city = "Atlanta"
+    var city = "Atlanta" //default
 
     private val _temperatureDegrees = MutableLiveData<String>()
     private val _temperatureFeelsLike = MutableLiveData<String>()
@@ -26,11 +22,7 @@ class DisplayForecastDetailsViewModel: ViewModel() {
     val weatherMain: LiveData<String> = _weatherMain
     val weatherDescription: LiveData<String> = _weatherDescription
 
-    init {
-        getForecastForSelectedCity()
-    }
-
-    private fun getForecastForSelectedCity() {
+    fun getForecastForSelectedCity() {
         viewModelScope.launch {
             val responseDetails = OpenWeatherMapApiService().getCurrentWeatherAsync(
                 city).await().list[0]
